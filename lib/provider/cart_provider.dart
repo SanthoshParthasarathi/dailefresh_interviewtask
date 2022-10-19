@@ -8,22 +8,34 @@ class Cart with ChangeNotifier {
 
   double _price = 0.0;
 
-  void addItem(String name, int id, String image) {
+  void addItem(int id) {
+    print(id);
+    print("id from cart provider");
+    print(_items.length);
     _items.add(
       Data(
         productId: id,
-        productName: name,
-        productSmallImg: image,
       ),
     );
-    print(_items);
+    print(_items.length);
+    print(_items.last.productId);
+
     // _price += item.priceList![0].prodPriceId!;
     notifyListeners();
   }
 
-  void removeItem(Data item) {
-    _items.remove(item);
-    print(_items);
+  void removeItem(product) {
+    int index = -1;
+    for (int i = 0; i < _items.length; i++) {
+      if (_items[i].productId == product.productId) {
+        index = i;
+        break;
+      }
+    }
+    if (index != -1) {
+      _items.removeAt(index);
+    }
+
     // _price -= item.priceList![0].prodPriceId;
     notifyListeners();
   }
@@ -38,6 +50,16 @@ class Cart with ChangeNotifier {
 
   double get price {
     return _price;
+  }
+
+  int getCountForId(id) {
+    int count = 0;
+    _items.forEach((element) {
+      if (element.productId == id) {
+        count++;
+      }
+    });
+    return count;
   }
 
   var cart;

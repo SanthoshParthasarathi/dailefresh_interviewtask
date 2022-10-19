@@ -1,5 +1,7 @@
+import 'package:dailefresh_interview/provider/cart_provider.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({
@@ -12,7 +14,7 @@ class ProductDetailScreen extends StatelessWidget {
     required this.productWeight,
   }) : super(key: key);
 
-  final String productId;
+  final int productId;
   final String imageUrl;
   final String productName;
   final String price;
@@ -62,27 +64,131 @@ class ProductDetailScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 20.0),
-                child: Container(
-                  padding: EdgeInsets.all(4),
-                  alignment: Alignment.center,
-                  height: size.height * 0.06,
-                  width: size.width * 0.3,
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(8),
-                    // border: Border.all(),
-                  ),
-                  child: Text(
-                    'ADD',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                    ),
-                  ),
-                ),
-              )
+              Consumer<Cart>(
+                builder: (context, cart, child) => cart.count <= 0
+                    ? InkWell(
+                        onTap: () {
+                          // cart.addToCart({
+                          //   "id": ProductModelProvider.productId,
+                          //   "title":
+                          //       ProductModelProvider.productName,
+                          //   "price": ProductModelProvider
+                          //       .priceList![0].productMRP,
+                          //   "qty": ProductModelProvider.qty,
+                          //   "imageURL":
+                          //       ProductModelProvider.productSmallImg
+                          // });
+                          cart.addItem(
+                            // productName.toString(),
+                            int.parse(productId.toString()),
+                            // imageUrl.toString(),
+                          );
+                          print(productName.toString());
+                          print(cart.count);
+                          print(cart);
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 20),
+                          child: Container(
+                            padding: EdgeInsets.all(4),
+                            alignment: Alignment.center,
+                            height: size.height * 0.05,
+                            width: size.width * 0.25,
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Text(
+                              'ADD',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : Consumer<Cart>(
+                        builder: (context, cart, child) {
+                          return Padding(
+                            padding: EdgeInsets.only(right: 20),
+                            child: Container(
+                              // padding: EdgeInsets.all(4),
+                              alignment: Alignment.center,
+                              height: size.height * 0.05,
+                              width: size.width * 0.25,
+                              decoration: BoxDecoration(
+                                color: Colors.green,
+                                borderRadius: BorderRadius.circular(10),
+                                // border: Border.all(
+                                //   width: 0.5,
+                                // ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  // InkWell(
+                                  //   onTap: () {
+                                  //     cart.removeItem(productId);
+                                  //     print('-');
+                                  //   },
+                                  //   child: Text(
+                                  //     '-',
+                                  //     style: TextStyle(
+                                  //       color: Colors.white,
+                                  //       fontSize: 24,
+                                  //       fontWeight: FontWeight.w500,
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  Text(
+                                    cart.getCountForId(productId).toString(),
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      // cart.addToCart({
+                                      //   "id": ProductModelProvider.productId,
+                                      //   "title":
+                                      //       ProductModelProvider.productName,
+                                      //   "price": ProductModelProvider
+                                      //       .priceList![0].productMRP,
+                                      //   "qty": ProductModelProvider.qty,
+                                      //   "imageURL":
+                                      //       ProductModelProvider.productSmallImg
+                                      // });
+                                      cart.addItem(
+                                        // productName.toString(),
+                                        int.parse(productId.toString()),
+                                        // imageUrl.toString(),
+                                      );
+                                      print(productName.toString());
+                                      print(cart.count);
+                                      print(cart);
+                                      // print(cart.items.isEmpty);
+                                    },
+                                    child: Text(
+                                      '+',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+              ),
             ],
           ),
           Padding(

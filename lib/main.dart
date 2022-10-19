@@ -2,6 +2,7 @@ import 'package:dailefresh_interview/model/product_model.dart';
 import 'package:dailefresh_interview/provider/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:splashscreen/splashscreen.dart';
 
 import 'screens/firstpage.dart';
