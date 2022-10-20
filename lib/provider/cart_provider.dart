@@ -9,16 +9,13 @@ class Cart with ChangeNotifier {
   double _price = 0.0;
 
   void addItem(int id) {
-    print(id);
-    print("id from cart provider");
-    print(_items.length);
+   
     _items.add(
       Data(
         productId: id,
       ),
     );
-    print(_items.length);
-    print(_items.last.productId);
+  
 
     // _price += item.priceList![0].prodPriceId!;
     notifyListeners();

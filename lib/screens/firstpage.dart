@@ -46,7 +46,6 @@ class _FirstPageState extends State<FirstPage> {
 
   @override
   Widget build(BuildContext context) {
-    print('buildcontext');
 
     Size size = MediaQuery.of(context).size;
 
@@ -123,8 +122,7 @@ class _FirstPageState extends State<FirstPage> {
                 childAspectRatio: 0.6,
               ),
               itemBuilder: (context, index) {
-                print(snapshot.data![index]);
-                print(index.toString());
+                
                 return ChangeNotifierProvider.value(
                   value: snapshot.data![index],
                   child: ClipRRect(
@@ -296,12 +294,7 @@ class _FirstPageState extends State<FirstPage> {
                                                           // ProductModelProvider.productSmallImg
                                                           //     .toString(),
                                                         );
-                                                        print(snapshot
-                                                            .data![index]
-                                                            .productName
-                                                            .toString());
-                                                        print(cart.count);
-                                                        print(cart);
+                                                       
                                                       },
                                                       child: Container(
                                                         padding:
@@ -361,7 +354,7 @@ class _FirstPageState extends State<FirstPage> {
                                                                   cart.removeItem(
                                                                       snapshot.data![
                                                                           index]);
-                                                                  print('-');
+                                                                  
                                                                 },
                                                                 child: Text(
                                                                   '-',
@@ -408,27 +401,9 @@ class _FirstPageState extends State<FirstPage> {
                                                                         .data![
                                                                             index]
                                                                         .productId!,
-                                                                    // ProductModelProvider
-                                                                    //     .productSmallImg
-                                                                    //     .toString(),
+                                                                   
                                                                   );
-                                                                  print(snapshot
-                                                                      .data![
-                                                                          index]
-                                                                      .productName
-                                                                      .toString());
-                                                                  print(cart
-                                                                      .count);
-                                                                  // print(cart
-                                                                  //     .length);
-                                                                  // print(cart
-                                                                  //     .items
-                                                                  //     .length);
-
-                                                                  // print(cart
-                                                                  //     .items[
-                                                                  //         index]
-                                                                  //     .productId);
+                                                                 
                                                                 },
                                                                 child: Text(
                                                                   '+',

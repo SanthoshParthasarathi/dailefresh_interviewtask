@@ -83,9 +83,7 @@ class ProductDetailScreen extends StatelessWidget {
                             int.parse(productId.toString()),
                             // imageUrl.toString(),
                           );
-                          print(productName.toString());
-                          print(cart.count);
-                          print(cart);
+                       
                         },
                         child: Padding(
                           padding: EdgeInsets.only(right: 20),
@@ -168,10 +166,7 @@ class ProductDetailScreen extends StatelessWidget {
                                         int.parse(productId.toString()),
                                         // imageUrl.toString(),
                                       );
-                                      print(productName.toString());
-                                      print(cart.count);
-                                      print(cart);
-                                      // print(cart.items.isEmpty);
+                                     
                                     },
                                     child: Text(
                                       '+',
